@@ -1,0 +1,10 @@
+name: ShadowProtect
+version: '${project.version}'
+main: net.voxhash.shadowprotect.ShadowProtect
+api-version: 1.18
+version: 1.0
+load: STARTUP
+authors: [ ZachyFoxx ]
+description: Advanced machine-learning anti-spam for SpigotMC Minecraft servers
+website: voxhash.net
+softDepend: [PlaceholderAPI, CommandAPI]

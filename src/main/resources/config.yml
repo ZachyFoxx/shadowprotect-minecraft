@@ -1,0 +1,194 @@
+general:
+  prefix: '&8[&c&lShadowProtect&8]&r'
+  message: '&7'
+  primary_color: '&c&l'
+  secondary_color: '&8'
+  extra_color: '&e&l'
+  error_color: '&4'
+  warning_color: '&e'
+  success_color: '&a'
+  info_color: '&b'
+  check_sign: true
+  check_dm: true
+  commands_to_disable:
+    - pl
+    - plugins
+    - icanhasbukkit
+    - say
+    - me
+
+anti_capitals:
+  enabled: true
+  notify_staff: true
+  threshold: 0.5
+  ignore_usernames: true
+  min_message_length: 4
+  ignored_words: 
+    - LOL
+    - WTF
+    - OMG
+    - WOW
+    - ROFL
+    - LMAO
+    - HAHA
+
+anti_spam:
+  enabled: true
+  notify_staff: true
+  # Note: You will need to create an API key by registering an account with /smartfilter register
+  smart_filter:
+    enabled: false
+    notify_staff: true
+    api_token: 'tokenhere'
+    threshold: 0.85
+    ignored_phrases:
+      - 'Join my town: /join town'
+
+  # Prevent sending messages too quickly
+  chat:
+    delay: 1
+    ignored_words: 
+      - home
+      - spawn
+
+  # Check if a player's message is similar to their last one
+  similarity_check:
+    enabled: true
+    notify_staff: true
+    similarity_threshold: 0.85
+    ignore_special: true
+    ignore_first_arg_command: true
+    ignored_commands:
+      - home
+      - spawn
+    
+  # Check if a player's message is keysmash 
+  # e.g. jwgnsjegnj swgnkswje kswjeg
+  # IMPORTANT: This feature is experimental and may give a lot of false positives
+  #   feel free to tweak the threshold to your liking
+  entropy_check:
+    enabled: false
+    notify_staff: true
+    entropy_threshold: 0.85
+    ignore_usernames: true
+    igore_special: true
+
+social_spy:
+  ignore_blank: true
+  enabled_commands:
+    - dm
+    - pm
+    - msg
+    - message
+    - reply
+    - r
+
+language:
+  join_leave:
+    join_messages:
+      - "%secondary_color%[%success_color%+%secondary_color%] %warning_color%%player_name% %message_color%joined the party!"
+      - "%secondary_color%[%success_color%+%secondary_color%] %message_color%A wild %warning_color%%player_name% %message_color%appeared!"
+    leave_messages:
+      - "%secondary_color%[%error_color%-%secondary_color%] %message_color%Farewell, %warning_color%%player_name%%message_color%!"
+      - "%secondary_color%[%error_color%-%secondary_color%] %message_color%See ya later, %warning_color%%player_name%%message_color%!"
+    kick_messages:
+      - "%secondary_color%[%error_color%-%secondary_color%] %message_color%%player_name% was given the boot."
+      - "%secondary_color%[%error_color%-%secondary_color%] %message_color%%player_name% couldn't handle the rules."
+
+  chat:
+    format: "&7%player_name% &8» &7%message%"
+    muted: "%error_color%You are muted and may not speak!"
+    delay_set: "%prefix% %error_color%A chat delay of %extra_color%&l%delay% %error_color%seconds has been set by %extra_color%&l%player_name%%error_color%!"
+
+  social_spy:
+    sign_spy_toggle: "%prefix% %message_color%Sign Spy » %status%"
+    social_spy_toggle: "%prefix% %message_color%Social Spy » %status%"
+    social_spy_message: "%prefix% %message_color%Social Spy » %player_name% » %message%"
+    sign_spy_message: "%prefix% %message_color%%player_name% %secondary_color%» \n %secondary_color%» %sign_line_1% \n %secondary_color%» %sign_line_2% \n %secondary_color%» %sign_line_3% \n %secondary_color%» %sign_line_4% \n%secondary_color%(%message_color%%sign_location%%secondary_color%)"
+
+  staff:
+    staff_chat_format: "%prefix% %message_color%%player_name% %secondary_color%» %message_color%%message%"
+    staff_chat_prefix: '+'
+    staff_chat_toggle: "%prefix% %message_color%Staff Chat » %status%"
+    delay_set: "%prefix% %message_color%Delay set to %extra_color%%delay%%message_color% seconds"
+    delay_negative: "%prefix% %error_color%Delay cannot be negative!"
+    delay: "%prefix% %message_color%Delay is currently set to %extra_color%%delay%%message_color% seconds"
+
+  dm:
+    outgoing: "%extra_color%✉ %message_color%to: &a%to_name% %secondary_color%» %message_color%&o%message%"
+    incoming: "%extra_color%✉ %message_color%from: &a%from_name% %secondary_color%» %message_color%&o%message%"
+    cannot_dm_self: "%error_color%You cannot send a DM to yourself."
+    blocked: "%error_color%You cannot send a DM to %player_name%."
+    cannot_block_self: "%error_color%You cannot block yourself."
+    no_last_dm: "%error_color%There is no message to reply to."
+
+  notify:
+    capitals: "%prefix% %message_color%%player_name% %error_color%used capitals in their message!"
+    message: "%prefix% %message_color%%player_name% %error_color%spamming!"
+    message_ai: "%prefix% %message_color%%player_name% %error_color%spamming with &e(Confidence: %confidence%%) %message_color%(Message: %message%)!"
+    message_similar: "%prefix% %message_color%%player_name% %error_color%spamming with &e(Similarity: %similarity%%)!"
+    message_entropy: "%prefix% %message_color%%player_name% %error_color%spamming with &e(Entropy: %entropy%%)!"
+    message_swear: "%prefix% %message_color%%player_name%'s %error_color%message contains a swear word!"
+
+  warn:
+    anti_capitals:
+      too_many_caps: "%prefix% %error_color%Your message contains too many capital letters!"
+
+    anti_spam:
+      too_many_repeats: "%prefix% %error_color%Your message contains too many repeated characters!"
+      spam_probability: "%prefix% %error_color%Your message may contain spam!"
+      entropy: "%prefix% %error_color%Your message contains too much entropy!"
+      chat_delay: "%prefix% %error_color%You must wait %delay% seconds before sending another message!"
+
+anti_swear:
+  enabled: true
+  notify_staff: false
+  max_levenshtein_distance: 1
+  swear_words:
+  - ass
+  - asshat
+  - a$$
+  - a$$hole
+  - fuk
+  - fuck
+  - horny
+  - aroused
+  - hentai
+  - slut
+  - slag
+  - boob
+  - pussy
+  - vagina
+  - faggot
+  - fagg
+  - bastard
+  - cunt
+  - nigger
+  - nigga
+  - niglet
+  - anal
+  - wanker
+  - tosser
+  - shit
+  - rape
+  - rapist
+  - dick
+  - cock
+  - whore
+  - bitch
+  - asshole
+  - twat
+  - titt
+  - piss
+  - tits
+  - titties
+  - intercourse
+  - sperm
+  - spunk
+  - testicle
+  - milf
+  - retard
+  - anus
+  - dafuq
+  - sex
+  - penis
