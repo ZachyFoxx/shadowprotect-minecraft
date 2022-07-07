@@ -22,6 +22,7 @@ import net.voxhash.shadowprotect.listener.PlayerCommandPreProcessListener;
 import net.voxhash.shadowprotect.listener.PlayerConnectionListener;
 import net.voxhash.shadowprotect.listener.SignChangeListener;
 import net.voxhash.shadowprotect.manager.ChannelManager;
+import net.voxhash.shadowprotect.manager.ChatMessageManager;
 import net.voxhash.shadowprotect.manager.DataServiceManager;
 import net.voxhash.shadowprotect.manager.DirectMessageServiceManager;
 import net.voxhash.shadowprotect.manager.ImplementationManager;
@@ -46,6 +47,7 @@ public final class ShadowProtect extends JavaPlugin {
     public StaffChatServiceManager staffChatServiceManager;
     public SignSpyServiceManager signSpyServiceManager;
     public SocialSpyServiceManager socialSpyServiceManager;
+    public ChatMessageManager chatMessageManager;
 
     @Override
     public void onLoad() {
@@ -74,6 +76,7 @@ public final class ShadowProtect extends JavaPlugin {
         this.staffChatServiceManager = new StaffChatServiceManager();
         this.signSpyServiceManager = new SignSpyServiceManager();
         this.socialSpyServiceManager = new SocialSpyServiceManager();
+        this.chatMessageManager = new ChatMessageManager();
     }
     
     @Override

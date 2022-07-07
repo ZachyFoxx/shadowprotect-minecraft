@@ -143,6 +143,8 @@ language:
 anti_swear:
   enabled: true
   notify_staff: false
+  # Note: This will censor ALL detected swears, including words that contain swears.
+  aggressive: true
   max_levenshtein_distance: 1
   swear_words:
   - ass

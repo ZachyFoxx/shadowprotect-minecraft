@@ -18,6 +18,7 @@ repositories {
     maven {
         url "https://repository.jboss.org/nexus/content/groups/public/"
     }
+    maven { url "https://repo.dmulloy2.net/repository/public/" }
 }
 
 dependencies {
@@ -29,6 +30,7 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.11.1'
     compileOnly "dev.jorel:commandapi-annotations:8.2.0"
     annotationProcessor "dev.jorel:commandapi-annotations:8.2.0"
+    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.7.0";
 }
 
 group = 'net.voxhash'

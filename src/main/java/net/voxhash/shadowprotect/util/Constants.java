@@ -71,6 +71,7 @@ public interface Constants {
         public static interface Anti_Swear {
             public static final Boolean ENABLED = plugin.getConfig().getBoolean("anti_swear.enabled", true);
             public static final Boolean NOTIFY_STAFF = plugin.getConfig().getBoolean("anti_swear.notify_staff", false);
+            public static final Boolean AGGRESSIVE = plugin.getConfig().getBoolean("anti_swear.aggressive", true);
             public static final List<String> SWEAR_WORDS = plugin.getConfig().getStringList("anti_swear.swear_words");
             public static final Integer MAX_LEVENSHTEIN_DISTANCE = plugin.getConfig().getInt("anti_swear.max_levenshtein_distance", 1);
         }

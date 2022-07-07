@@ -2,6 +2,7 @@ package net.voxhash.shadowprotect.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 
@@ -58,12 +59,32 @@ public class AntiSpamService implements Config, Messages, WithPlugin {
             String msg = this.result;
             boolean contains = false;
             if (Config.Anti_Swear.SWEAR_WORDS.size() > 0) {
+                if (Config.Anti_Swear.AGGRESSIVE) {
+                    List<Integer> indexes = new ArrayList<Integer>();
+                    for (int i = 0; i < msg.length(); i++) {
+                        if (msg.charAt(i) == ' ')
+                            indexes.add(i);
+                    }
+                    
+                    String noSpace = msg.replaceAll(" ", "");
+                    for (String word: Config.Anti_Swear.SWEAR_WORDS) {
+                        if (noSpace.contains(word)) {
+                            noSpace = noSpace.replaceAll(word, StringUtil.repeat("*", word.length()));
+                            contains = true;
+                        }
+                    }
+                    for (int index: indexes) {
+                        msg = msg.substring(0, index) + " " + noSpace.substring(0, noSpace.length()) + msg.substring(index, msg.length());
+                    }
+                    msg = noSpace;
+                }
                 for (String word: msg.split(" ")) {
+                    String noSpecial = word.replaceAll("[^a-zA-Z0-9]", "");
                     for (String swear: Config.Anti_Swear.SWEAR_WORDS) {
                         if (allowedWords.contains(word.toLowerCase())) {
                             continue;
                         }
-                        if (StringUtil.levenshteinDistance(word, swear) <= Config.Anti_Swear.MAX_LEVENSHTEIN_DISTANCE) {
+                        if (StringUtil.levenshteinDistance(noSpecial, swear) <= Config.Anti_Swear.MAX_LEVENSHTEIN_DISTANCE) {
                             contains = true;
                             msg = msg.replace(word, StringUtil.repeat("*", word.length()));
                             this.result = (msg.replace(word, StringUtil.repeat("*", word.length())));
